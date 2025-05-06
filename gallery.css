@@ -1,0 +1,195 @@
+/* Gallery Page Styles */
+.gallery-header {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 180px 0 80px;
+  text-align: center;
+}
+
+.gallery-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-header p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Gallery Filter */
+.gallery-filter {
+  margin-bottom: 30px;
+}
+
+.btn-filter {
+  background-color: transparent;
+  border: 2px solid #e9e9e9;
+  color: #555;
+  margin: 0 5px 10px;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-filter:hover,
+.btn-filter.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--dark-color);
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 20px;
+  color: white;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-info h5 {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.gallery-info span {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* GLightbox Customization */
+.glightbox-clean .gslide-description {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.glightbox-clean .gslide-title {
+  color: white;
+  font-family: "Playfair Display", serif;
+}
+
+.glightbox-clean .gslide-desc {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Poppins", sans-serif;
+}
+
+/* CTA Section */
+.cta-section {
+  background-color: var(--accent-color);
+  padding: 60px 0;
+}
+
+.cta-section h2 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+/* Load More Button */
+#load-more {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--dark-color);
+  padding: 12px 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#load-more:hover {
+  background-color: #c4a130;
+  border-color: #c4a130;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 991.98px) {
+  .gallery-header {
+    padding: 150px 0 60px;
+  }
+
+  .gallery-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .gallery-header {
+    padding: 120px 0 50px;
+  }
+
+  .gallery-header h1 {
+    font-size: 2rem;
+  }
+
+  .btn-filter {
+    padding: 6px 15px;
+    margin: 0 3px 8px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .gallery-header {
+    padding: 100px 0 40px;
+  }
+
+  .gallery-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item img {
+    height: 220px;
+  }
+}

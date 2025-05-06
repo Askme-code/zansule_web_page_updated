@@ -1,0 +1,11 @@
+.navbar-brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.brand-text {
+  color: white;
+  position: relative;
+  display: inline-block;
+}

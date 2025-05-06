@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Zansule Tour & Safari</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <span class="brand-text">Zansule Tour & Safari</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Website Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Dashboard
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logoutBtn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section id="loginSection" class="py-5 mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body p-5">
+                            <h2 class="text-center mb-4">Admin Login</h2>
+                            <form id="loginForm">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="alert alert-danger d-none" id="loginError">
+                                    Invalid username or password
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboardSection" class="py-5 mt-5 d-none">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3 col-lg-2 sidebar">
+                    <div class="sidebar-sticky">
+                        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Dashboard</span>
+                        </h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" data-tab="overview">
+                                    <i class="fas fa-home mr-2"></i>
+                                    Overview
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-tab="contact">
+                                    <i class="fas fa-envelope mr-2"></i>
+                                    Contact Submissions
+                                    <span class="badge badge-primary ml-2" id="contactCount">0</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-tab="booking">
+                                    <i class="fas fa-calendar-check mr-2"></i>
+                                    Booking Requests
+                                    <span class="badge badge-primary ml-2" id="bookingCount">0</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-tab="settings">
+                                    <i class="fas fa-cog mr-2"></i>
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                    <!-- Overview Tab -->
+                    <div class="tab-content" id="overview">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Dashboard Overview</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                                <div class="btn-group mr-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" id="refreshData">
+                                        <i class="fas fa-sync-alt mr-1"></i> Refresh
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" id="exportData">
+                                        <i class="fas fa-download mr-1"></i> Export
+                                    </button>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" id="dateRangeBtn">
+                                    <i class="fas fa-calendar mr-1"></i>
+                                    This week
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card text-white bg-primary mb-4">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h5 class="card-title">Total Submissions</h5>
+                                                <h2 class="display-4" id="totalSubmissions">0</h2>
+                                            </div>
+                                            <i class="fas fa-envelope-open-text fa-3x opacity-50"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card text-white bg-success mb-4">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h5 class="card-title">Booking Requests</h5>
+                                                <h2 class="display-4" id="totalBookings">0</h2>
+                                            </div>
+                                            <i class="fas fa-calendar-check fa-3x opacity-50"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card text-white bg-warning mb-4">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h5 class="card-title">Unread Messages</h5>
+                                                <h2 class="display-4" id="unreadMessages">0</h2>
+                                            </div>
+                                            <i class="fas fa-bell fa-3x opacity-50"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-8">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Recent Submissions</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>Name</th>
+                                                        <th>Type</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="recentSubmissionsTable">
+                                                    <!-- Recent submissions will be loaded here -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Popular Tours</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="tourChart" width="100%" height="250"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Submissions Tab -->
+                    <div class="tab-content d-none" id="contact">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Contact Form Submissions</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                                <div class="input-group mr-2">
+                                    <input type="text" class="form-control" placeholder="Search..." id="contactSearch">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-danger" id="deleteAllContactBtn">
+                                    <i class="fas fa-trash-alt mr-1"></i> Delete All
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="selectAllContact">
+                                                        <label class="custom-control-label" for="selectAllContact"></label>
+                                                    </div>
+                                                </th>
+                                                <th>Date <i class="fas fa-sort text-muted"></i></th>
+                                                <th>Name <i class="fas fa-sort text-muted"></i></th>
+                                                <th>Email <i class="fas fa-sort text-muted"></i></th>
+                                                <th>Subject <i class="fas fa-sort text-muted"></i></th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="contactSubmissionsTable">
+                                            <!-- Contact submissions will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="contactPagination" class="d-flex justify-content-between align-items-center mt-4">
+                                    <div>
+                                        <span>Showing <span id="contactStart">1</span> to <span id="contactEnd">10</span> of <span id="contactTotal">0</span> entries</span>
+                                    </div>
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination mb-0">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Booking Requests Tab -->
+                    <div class="tab-content d-none" id="booking">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Booking Requests</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                                <div class="input-group mr-2">
+                                    <input type="text" class="form-control" placeholder="Search..." id="bookingSearch">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="btn-group mr-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fas fa-filter mr-1"></i> Filter
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">All Bookings</a>
+                                        <a class="dropdown-item" href="#">New Bookings</a>
+                                        <a class="dropdown-item" href="#">Confirmed Bookings</a>
+                                        <a class="dropdown-item" href="#">Completed Tours</a>
+                                        <a class="dropdown-item" href="#">Cancelled Bookings</a>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-danger" id="deleteAllBookingBtn">
+                                    <i class="fas fa-trash-alt mr-1"></i> Delete All
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="selectAllBooking">
+                                                        <label class="custom-control-label" for="selectAllBooking"></label>
+                                                    </div>
+                                                </th>
+                                                <th>Date <i class="fas fa-sort text-muted"></i></th>
+                                                <th>Name <i class="fas fa-sort text-muted"></i></th>
+                                                <th>Tour <i class="fas fa-sort text-muted"></i></th>
+                                                <th>Tour Date <i class="fas fa-sort text-muted"></i></th>
+                                                <th>Guests <i class="fas fa-sort text-muted"></i></th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bookingSubmissionsTable">
+                                            <!-- Booking submissions will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="bookingPagination" class="d-flex justify-content-between align-items-center mt-4">
+                                    <div>
+                                        <span>Showing <span id="bookingStart">1</span> to <span id="bookingEnd">10</span> of <span id="bookingTotal">0</span> entries</span>
+                                    </div>
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination mb-0">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div class="tab-content d-none" id="settings">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Settings</h1>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Account Settings</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="accountSettingsForm">
+                                            <div class="form-group">
+                                                <label for="adminUsername">Username</label>
+                                                <input type="text" class="form-control" id="adminUsername" value="admin">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="adminEmail">Email</label>
+                                                <input type="email" class="form-control" id="adminEmail" value="kimumilangali@gmail.com">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="currentPassword">Current Password</label>
+                                                <input type="password" class="form-control" id="currentPassword">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="newPassword">New Password</label>
+                                                <input type="password" class="form-control" id="newPassword">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="confirmPassword">Confirm New Password</label>
+                                                <input type="password" class="form-control" id="confirmPassword">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Notification Settings</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="notificationSettingsForm">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input" id="emailNotifications" checked>
+                                                    <label class="custom-control-label" for="emailNotifications">Email Notifications</label>
+                                                </div>
+                                                <small class="form-text text-muted">Receive email notifications for new submissions</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input" id="bookingAlerts" checked>
+                                                    <label class="custom-control-label" for="bookingAlerts">Booking Alerts</label>
+                                                </div>
+                                                <small class="form-text text-muted">Receive alerts for new booking requests</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input" id="marketingEmails">
+                                                    <label class="custom-control-label" for="marketingEmails">Marketing Emails</label>
+                                                </div>
+                                                <small class="form-text text-muted">Send marketing emails to customers</small>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save Preferences</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Email Notification Settings</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="emailSettingsForm">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input" id="emailNotificationsEnabled" checked>
+                                                    <label class="custom-control-label" for="emailNotificationsEnabled">Enable Email Notifications</label>
+                                                </div>
+                                                <small class="form-text text-muted">Receive email notifications for new submissions</small>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="notificationEmail">Notification Email</label>
+                                                <input type="email" class="form-control" id="notificationEmail" placeholder="Enter email address">
+                                                <small class="form-text text-muted">Email address where notifications will be sent</small>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="contactNotifications" checked>
+                                                    <label class="custom-control-label" for="contactNotifications">Contact Form Submissions</label>
+                                                </div>
+                                                <small class="form-text text-muted">Receive notifications for new contact form submissions</small>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="bookingNotifications" checked>
+                                                    <label class="custom-control-label" for="bookingNotifications">Booking Requests</label>
+                                                </div>
+                                                <small class="form-text text-muted">Receive notifications for new booking requests</small>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-between">
+                                                <button type="submit" class="btn btn-primary">Save Settings</button>
+                                                <button type="button" class="btn btn-outline-primary" id="testEmailBtn">Send Test Email</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Data Management</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between mb-3">
+                                            <button class="btn btn-outline-primary" id="exportAllData">
+                                                <i class="fas fa-download mr-1"></i> Export All Data
+                                            </button>
+                                            <button class="btn btn-outline-danger" id="clearAllData">
+                                                <i class="fas fa-trash-alt mr-1"></i> Clear All Data
+                                            </button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dataRetention">Data Retention Period</label>
+                                            <select class="form-control" id="dataRetention">
+                                                <option value="30">30 days</option>
+                                                <option value="60">60 days</option>
+                                                <option value="90" selected>90 days</option>
+                                                <option value="180">6 months</option>
+                                                <option value="365">1 year</option>
+                                                <option value="0">Forever</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" id="saveDataSettings">Save Settings</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submission Detail Modal -->
+    <div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="submissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submissionModalLabel">Submission Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="submissionModalBody">
+                    <!-- Submission details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="markAsReadBtn">Mark as Read</button>
+                    <button type="button" class="btn btn-success" id="addNoteBtn">Add Note</button>
+                    <button type="button" class="btn btn-danger" id="deleteSubmissionBtn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Note Modal -->
+    <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noteModalLabel">Add Note</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="noteForm">
+                        <div class="form-group">
+                            <label for="noteText">Note</label>
+                            <textarea class="form-control" id="noteText" rows="4" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveNoteBtn">Save Note</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Confirm Action</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="confirmationModalBody">
+                    Are you sure you want to proceed with this action?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmActionBtn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="admin.js"></script>
+</body>
+
+</html>

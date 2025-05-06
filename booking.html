@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Tour - Zansule Tour & Safari</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Flatpickr Date Picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="booking.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Zansule Tour & Safari</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#tours">Tours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#safaris">Safaris</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="booking.html">Book a Tour
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-globe-africa mr-1"></i> <span id="current-language">EN</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
+                            <a class="dropdown-item" href="#" onclick="changeLanguage('en')"><img src="https://flagcdn.com/w20/gb.png" class="mr-2" alt="English"> English</a>
+                            <a class="dropdown-item" href="#" onclick="changeLanguage('fr')"><img src="https://flagcdn.com/w20/fr.png" class="mr-2" alt="French"> Français</a>
+                            <a class="dropdown-item" href="#" onclick="changeLanguage('pl')"><img src="https://flagcdn.com/w20/pl.png" class="mr-2" alt="Polish"> Polski</a>
+                            <a class="dropdown-item" href="#" onclick="changeLanguage('sw')"><img src="https://flagcdn.com/w20/tz.png" class="mr-2" alt="Swahili"> Kiswahili</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="booking-header">
+        <div class="container text-center">
+            <h1 data-aos="fade-up" data-aos-delay="100">Book Your Zanzibar Adventure</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Fill out the form below to reserve your tour or safari</p>
+        </div>
+    </header>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="booking-form-container" data-aos="fade-up">
+                        <div class="booking-form-header">
+                            <h2><i class="fas fa-calendar-check"></i> Tour Booking Form</h2>
+                            <p>Please provide all the required information to book your tour</p>
+                        </div>
+                        
+                        <form id="bookingForm" class="booking-form" action="https://formspree.io/f/xwpoozjq" method="POST">
+                            <!-- Personal Information -->
+                            <div class="form-section" data-aos="fade-up">
+                                <h3>Personal Information</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstName">First Name*</label>
+                                            <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastName">Last Name*</label>
+                                            <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Email Address*</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone">Phone Number*</label>
+                                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country of Residence</label>
+                                    <input type="text" class="form-control" id="country" name="country">
+                                </div>
+                            </div>
+
+                            <!-- Tour Details -->
+                            <div class="form-section" data-aos="fade-up" data-aos-delay="100">
+                                <h3>Tour Details</h3>
+                                <div class="form-group">
+                                    <label for="tourType">Select Tour*</label>
+                                    <select class="form-control" id="tourType" name="tourType" required>
+                                        <option value="" selected disabled>-- Select a Tour --</option>
+                                        <optgroup label="Zanzibar Tours">
+                                            <option value="Stone Town Tour">Stone Town Tour</option>
+                                            <option value="Safari Blue">Safari Blue</option>
+                                            <option value="Prison Island Tour">Prison Island Tour</option>
+                                            <option value="Spice Tour">Spice Tour</option>
+                                            <option value="Jozani Forest">Jozani Forest</option>
+                                            <option value="Sea Turtle Nungwi">Sea Turtle Nungwi</option>
+                                            <option value="Dolphin Kizimkazi">Dolphin Kizimkazi</option>
+                                            <option value="Snorkelling Blue Lagoon">Snorkelling Blue Lagoon</option>
+                                            <option value="Nakupenda Sand Bank">Nakupenda Sand Bank</option>
+                                            <option value="Dhow Sunset Cruise">Dhow Sunset Cruise</option>
+                                            <option value="Village Tour">Village Tour</option>
+                                        </optgroup>
+                                        <optgroup label="Tanzania Safaris">
+                                            <option value="Serengeti Safari">Serengeti Safari</option>
+                                            <option value="Ngorongoro Crater">Ngorongoro Crater</option>
+                                            <option value="Mikumi National Park">Mikumi National Park</option>
+                                            <option value="Mount Kilimanjaro">Mount Kilimanjaro</option>
+                                            <option value="Mount Meru">Mount Meru</option>
+                                        </optgroup>
+                                        <option value="Custom Tour">Custom Tour Package</option>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tourDate">Preferred Date*</label>
+                                            <input type="text" class="form-control datepicker" id="tourDate" name="tourDate" placeholder="Select date" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tourDuration">Tour Duration</label>
+                                            <select class="form-control" id="tourDuration" name="tourDuration">
+                                                <option value="Half Day">Half Day</option>
+                                                <option value="Full Day" selected>Full Day</option>
+                                                <option value="2 Days">2 Days</option>
+                                                <option value="3 Days">3 Days</option>
+                                                <option value="5 Days">5 Days</option>
+                                                <option value="7 Days">7 Days</option>
+                                                <option value="Custom">Custom Duration</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="adults">Number of Adults*</label>
+                                            <input type="number" class="form-control" id="adults" name="adults" min="1" value="2" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="children">Number of Children (Under 12)</label>
+                                            <input type="number" class="form-control" id="children" name="children" min="0" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group d-none" id="climbingExperienceGroup">
+                                    <label for="climbingExperience">Previous Climbing Experience</label>
+                                    <select class="form-control" id="climbingExperience" name="climbingExperience">
+                                        <option value="None">None</option>
+                                        <option value="Beginner">Beginner (hiked mountains under 3000m)</option>
+                                        <option value="Intermediate">Intermediate (hiked mountains 3000-4000m)</option>
+                                        <option value="Experienced">Experienced (hiked mountains over 4000m)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Accommodation & Transportation -->
+                            <div class="form-section" data-aos="fade-up" data-aos-delay="200">
+                                <h3>Accommodation & Transportation</h3>
+                                <div class="form-group">
+                                    <label>Do you need accommodation?</label>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="accommodationYes" name="accommodation" class="custom-control-input" value="Yes">
+                                        <label class="custom-control-label" for="accommodationYes">Yes, please arrange accommodation</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="accommodationNo" name="accommodation" class="custom-control-input" value="No" checked>
+                                        <label class="custom-control-label" for="accommodationNo">No, I'll arrange my own accommodation</label>
+                                    </div>
+                                </div>
+                                
+                                <div id="accommodationOptions" class="d-none">
+                                    <div class="form-group">
+                                        <label for="accommodationType">Preferred Accommodation Type</label>
+                                        <select class="form-control" id="accommodationType" name="accommodationType">
+                                            <option value="Budget">Budget</option>
+                                            <option value="Standard" selected>Standard</option>
+                                            <option value="Luxury">Luxury</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="pickupLocation">Pickup Location</label>
+                                    <input type="text" class="form-control" id="pickupLocation" name="pickupLocation" placeholder="Hotel name or address">
+                                </div>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="form-section" data-aos="fade-up" data-aos-delay="300">
+                                <h3>Additional Information</h3>
+                                <div class="form-group">
+                                    <label for="specialRequests">Special Requests or Dietary Requirements</label>
+                                    <textarea class="form-control" id="specialRequests" name="specialRequests" rows="3" placeholder="Please let us know if you have any special requests, dietary requirements, or questions"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>How did you hear about us?</label>
+                                    <select class="form-control" id="referralSource" name="referralSource">
+                                        <option value="Search Engine">Search Engine</option>
+                                        <option value="Social Media">Social Media</option>
+                                        <option value="Friend Referral">Friend Referral</option>
+                                        <option value="Travel Agency">Travel Agency</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="400">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="termsCheck" required>
+                                    <label class="custom-control-label" for="termsCheck">I agree to the <a href="#">terms and conditions</a>*</label>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="_subject" value="New Tour Booking Request">
+                            <input type="hidden" name="_replyto" value="kimumilangali@gmail.com">
+
+                            <div class="booking-form-footer" data-aos="fade-up" data-aos-delay="500">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Book Now</button>
+                                <p class="mt-2 text-center">* Required fields</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h4 class="footer-title">Zansule Tour & Safari</h4>
+                    <p>Providing unforgettable experiences in Zanzibar and Tanzania since 2010.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/zansuletourandsafaris" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/selengofm" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/255772408250" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#tours">Zanzibar Tours</a></li>
+                        <li><a href="index.html#safaris">Tanzania Safaris</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="booking.html">Book a Tour</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope mr-2"></i><a href="mailto:selemansefm8080@gmail.com">selemansefm8080@gmail.com</a></li>
+                        <li><i class="fab fa-facebook-f mr-2"></i><a href="https://www.facebook.com/zansuletourandsafaris" target="_blank">zansule tour & safaris</a></li>
+                        <li><i class="fas fa-phone mr-2"></i><a href="tel:+255772408250">0772408250</a> / <a href="tel:+255782064800">0782064800</a></li>
+                        <li><i class="fab fa-whatsapp mr-2"></i><a href="https://wa.me/255772408250" target="_blank">WhatsApp Chat</a></li>
+                        <li><i class="fab fa-instagram mr-2"></i><a href="https://www.instagram.com/selengofm" target="_blank">@selengofm</a></li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Stone Town, Zanzibar, Tanzania</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light opacity-25">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Zansule Tour & Safari. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Fixed WhatsApp Button -->
+    <a href="https://wa.me/255772408250" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Chat with us</span>
+    </a>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Flatpickr Date Picker -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+    <script src="booking.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+
+</html>

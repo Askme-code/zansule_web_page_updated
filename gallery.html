@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Zansule Tour & Safari</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- GLightbox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Zansule Tour & Safari</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Tours</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="gallery.html">Gallery
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="booking.html">Book a Tour</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gallery Header -->
+    <header class="gallery-header">
+        <div class="container text-center">
+            <h1 data-aos="fade-up" data-aos-delay="100">Zanzibar Photo Gallery</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Explore the beauty of Zanzibar through our collection of stunning images</p>
+        </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section py-5">
+        <div class="container">
+            <!-- Gallery Filter Buttons -->
+            <div class="gallery-filter text-center mb-5" data-aos="fade-up">
+                <button class="btn btn-filter active" data-filter="all">All</button>
+                <button class="btn btn-filter" data-filter="beaches">Beaches</button>
+                <button class="btn btn-filter" data-filter="wildlife">Wildlife</button>
+                <button class="btn btn-filter" data-filter="culture">Culture</button>
+                <button class="btn btn-filter" data-filter="tours">Tours</button>
+                <button class="btn btn-filter" data-filter="food">Food</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" data-aos="fade-up">
+                <!-- Beaches -->
+                <div class="gallery-item beaches" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Nungwi Beach; description: Crystal clear waters of Nungwi Beach in northern Zanzibar">
+                        <img src="https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Nungwi Beach" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Nungwi Beach</h5>
+                                <span>Beaches</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item beaches" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://images.unsplash.com/photo-1586500036065-8395b760a4b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Paje Beach; description: White sands of Paje Beach on the east coast">
+                        <img src="https://images.unsplash.com/photo-1586500036065-8395b760a4b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Paje Beach" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Paje Beach</h5>
+                                <span>Beaches</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item beaches" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://images.unsplash.com/photo-1512100356356-de1b84283e18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Kendwa Beach; description: Sunset at Kendwa Beach, famous for its stunning sunsets">
+                        <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Kendwa Beach" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Kendwa Beach</h5>
+                                <span>Beaches</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Wildlife -->
+                <div class="gallery-item wildlife" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Giant Tortoises; description: Giant tortoises at Prison Island, some over 100 years old">
+                        <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Giant Tortoises" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Giant Tortoises</h5>
+                                <span>Wildlife</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item wildlife" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://images.unsplash.com/photo-1591125665138-28b7d29b8d55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Red Colobus Monkeys; description: Endangered Red Colobus Monkeys in Jozani Forest">
+                        <img src="https://images.unsplash.com/photo-1591125665138-28b7d29b8d55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Red Colobus Monkeys" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Red Colobus Monkeys</h5>
+                                <span>Wildlife</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item wildlife" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Dolphins; description: Wild dolphins near Kizimkazi village">
+                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Dolphins" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Dolphins</h5>
+                                <span>Wildlife</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Culture -->
+                <div class="gallery-item culture" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://images.unsplash.com/photo-1489493585363-d69421e0edd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Stone Town Architecture; description: Historic buildings in UNESCO World Heritage Site Stone Town">
+                        <img src="https://images.unsplash.com/photo-1489493585363-d69421e0edd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Stone Town Architecture" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Stone Town Architecture</h5>
+                                <span>Culture</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item culture" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://images.unsplash.com/photo-1580323956656-26bbb1206e34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Traditional Dhow; description: Traditional wooden sailing vessels used by local fishermen">
+                        <img src="https://images.unsplash.com/photo-1580323956656-26bbb1206e34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Traditional Dhow" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Traditional Dhow</h5>
+                                <span>Culture</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item culture" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://images.unsplash.com/photo-1504221507732-5246c045949b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Local Market; description: Colorful local market in Stone Town">
+                        <img src="https://images.unsplash.com/photo-1504221507732-5246c045949b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Local Market" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Local Market</h5>
+                                <span>Culture</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Tours -->
+                <div class="gallery-item tours" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://images.unsplash.com/photo-1589664810433-136a8ae7c0d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Safari Blue; description: Snorkeling during the popular Safari Blue tour">
+                        <img src="https://images.unsplash.com/photo-1589664810433-136a8ae7c0d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Safari Blue" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Safari Blue</h5>
+                                <span>Tours</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item tours" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Spice Tour; description: Exploring the spice plantations of Zanzibar">
+                        <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Spice Tour" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Spice Tour</h5>
+                                <span>Tours</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item tours" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://images.unsplash.com/photo-1516260268631-6a7d56f679e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Serengeti Safari; description: Wildlife safari in Tanzania's famous Serengeti National Park">
+                        <img src="https://images.unsplash.com/photo-1516260268631-6a7d56f679e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Serengeti Safari" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Serengeti Safari</h5>
+                                <span>Tours</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Food -->
+                <div class="gallery-item food" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://images.unsplash.com/photo-1567982047351-76b6f93e38ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Seafood Feast; description: Fresh seafood prepared during Safari Blue tour">
+                        <img src="https://images.unsplash.com/photo-1567982047351-76b6f93e38ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Seafood Feast" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Seafood Feast</h5>
+                                <span>Food</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item food" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Spices; description: Colorful spices from Zanzibar, the Spice Island">
+                        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Spices" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Spices</h5>
+                                <span>Food</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item food" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" class="glightbox" data-gallery="gallery1" data-glightbox="title: Local Cuisine; description: Traditional Zanzibari dishes with local flavors">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Local Cuisine" class="img-fluid">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h5>Local Cuisine</h5>
+                                <span>Food</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-5" data-aos="fade-up">
+                <button id="load-more" class="btn btn-primary btn-lg">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section py-5 bg-light">
+        <div class="container text-center" data-aos="fade-up">
+            <h2>Ready to Experience Zanzibar?</h2>
+            <p class="lead mb-4">Book your tour now and create your own unforgettable memories</p>
+            <a href="booking.html" class="btn btn-primary btn-lg">Book a Tour</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Contact Us</h2>
+            <div class="row">
+                <div class="col-lg-5" data-aos="fade-right" data-aos-delay="100">
+                    <div class="contact-info p-4 bg-white rounded shadow-sm">
+                        <h3 class="mb-4">Get In Touch</h3>
+                        <div class="contact-item">
+                            <div class="icon-box">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Address</h5>
+                                <p>Stone Town, Zanzibar, Tanzania</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon-box">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5>Phone & WhatsApp</h5>
+                                <p><a href="tel:+255772408250">0772408250</a> / <a href="tel:+255782064800">0782064800</a></p>
+                            <div class="mt-2">
+                                <a href="https://wa.me/255772408250" class="btn btn-success btn-sm" target="_blank">
+                                    <i class="fab fa-whatsapp mr-1"></i> Chat on WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon-box">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p><a href="mailto:kimumilangali@gmail.com">kimumilangali@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
+                    <div class="contact-form p-4 bg-white rounded shadow-sm">
+                        <h3 class="mb-4">Send Us a Message</h3>
+                        <form id="galleryContactForm" action="https://formspree.io/f/xwpoozjq" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="galleryName">Your Name*</label>
+                                        <input type="text" class="form-control" id="galleryName" name="name" placeholder="Enter your name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="galleryEmail">Your Email*</label>
+                                        <input type="email" class="form-control" id="galleryEmail" name="email" placeholder="Enter your email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="gallerySubject">Subject</label>
+                                <input type="text" class="form-control" id="gallerySubject" name="subject" placeholder="Enter subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="galleryMessage">Your Message*</label>
+                                <textarea class="form-control" id="galleryMessage" name="message" rows="5" placeholder="Enter your message" required></textarea>
+                            </div>
+                            <input type="hidden" name="_subject" value="Gallery Page Contact Form Submission">
+                            <input type="hidden" name="_replyto" value="kimumilangali@gmail.com">
+                            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h4 class="footer-title">Zansule Tour & Safari</h4>
+                    <p>Providing unforgettable experiences in Zanzibar and Tanzania since 2010.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/zansuletourandsafaris" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/selengofm" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/255772408250" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#services">Our Tours</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="booking.html">Book a Tour</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope mr-2"></i><a href="mailto:selemansefm8080@gmail.com">selemansefm8080@gmail.com</a></li>
+                        <li><i class="fab fa-facebook-f mr-2"></i><a href="https://www.facebook.com/zansuletourandsafaris" target="_blank">zansule tour & safaris</a></li>
+                        <li><i class="fas fa-phone mr-2"></i><a href="tel:+255772408250">0772408250</a> / <a href="tel:+255782064800">0782064800</a></li>
+                        <li><i class="fab fa-whatsapp mr-2"></i><a href="https://wa.me/255772408250" target="_blank">WhatsApp Chat</a></li>
+                        <li><i class="fab fa-instagram mr-2"></i><a href="https://www.instagram.com/selengofm" target="_blank">@selengofm</a></li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Stone Town, Zanzibar, Tanzania</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light opacity-25">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Zansule Tour & Safari. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Fixed WhatsApp Button -->
+    <a href="https://wa.me/255772408250" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Chat with us</span>
+    </a>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- GLightbox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+    <script src="gallery.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+
+</html>

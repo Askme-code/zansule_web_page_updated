@@ -1,0 +1,14 @@
+# Protect directory with basic authentication
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile /path/to/.htpasswd
+Require valid-user
+
+# Prevent directory listing
+Options -Indexes
+
+# Deny access to .htaccess file
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
