@@ -217,8 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Safari Blue":
-        tourImage =
-          "assets/img/tour/safari_blue_in_zanzibar.jpg";
+        tourImage = "assets/img/tour/safari_blue_in_zanzibar.jpg";
         setTourDetails(
           modal,
           [
@@ -240,8 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Prison Island Tour":
-        tourImage =
-          "assets/img/tour/prison island tour.jpg";
+        tourImage = "assets/img/tour/prison island tour.jpg";
         setTourDetails(
           modal,
           [
@@ -262,8 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Spice Tour":
-        tourImage =
-          "assets/img/tour/spice tour.jpg";
+        tourImage = "assets/img/tour/spice tour.jpg";
         setTourDetails(
           modal,
           [
@@ -284,8 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Jozani Forest":
-        tourImage =
-          "assets/img/tour/jozani forest.jpg";
+        tourImage = "assets/img/tour/jozani forest.jpg";
         setTourDetails(
           modal,
           [
@@ -304,8 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Sea Turtle Nungwi":
-        tourImage =
-          "assets/img/tour/sea turtle nungwi.jpg";
+        tourImage = "assets/img/tour/sea turtle nungwi.jpg";
         setTourDetails(
           modal,
           [
@@ -325,8 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Dolphin Kizimkazi":
-        tourImage =
-          "assets/img/tour/Dolphin tour.jpg";
+        tourImage = "assets/img/tour/Dolphin tour.jpg";
         setTourDetails(
           modal,
           [
@@ -346,8 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Snorkelling Blue Lagoon":
-        tourImage =
-          "assets/img/tour/safari-blue-snorkel-1.jpg";
+        tourImage = "assets/img/tour/safari-blue-snorkel-1.jpg";
         setTourDetails(
           modal,
           [
@@ -368,8 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Nakupenda Sand Bank":
-        tourImage =
-          "assets/img/tour/nakupenda_love_island.jpg";
+        tourImage = "assets/img/tour/nakupenda_love_island.jpg";
         setTourDetails(
           modal,
           [
@@ -392,8 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Serengeti Safari":
-        tourImage =
-          "assets/img/safari/Serengeti-National-Park-zebra.jpg";
+        tourImage = "assets/img/safari/Serengeti-National-Park-zebra.jpg";
         setTourDetails(
           modal,
           [
@@ -416,8 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Ngorongoro Crater":
-        tourImage =
-          "assets/img/safari/Ngorongoro-Crater.jpg";
+        tourImage = "assets/img/safari/Ngorongoro-Crater.jpg";
         setTourDetails(
           modal,
           [
@@ -440,8 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Mikumi National Park":
-        tourImage =
-          "assets/img/safari/1-day-mikumi-national-park.jpg";
+        tourImage = "assets/img/safari/1-day-mikumi-national-park.jpg";
         setTourDetails(
           modal,
           [
@@ -463,8 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Mount Kilimanjaro":
-        tourImage =
-          "assets/img/safari/kilimanjaro.jpg";
+        tourImage = "assets/img/safari/kilimanjaro.jpg";
         setTourDetails(
           modal,
           [
@@ -487,8 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       case "Mount Meru":
-        tourImage =
-          "assets/img/safari/Meru mountain.jpg";
+        tourImage = "assets/img/safari/Meru mountain.jpg";
         setTourDetails(
           modal,
           [
@@ -511,8 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
       default:
-        tourImage =
-          "assets/img/safari/serengeti_baloon.jpg";
+        tourImage = "assets/img/safari/serengeti_baloon.jpg";
     }
 
     modal.find("#modalTourImg").attr("src", tourImage);
@@ -952,4 +938,62 @@ document.addEventListener("DOMContentLoaded", () => {
   if (savedLanguage) {
     changeLanguage(savedLanguage);
   }
+});
+// script.js
+window.addEventListener("scroll", function () {
+  const nav = document.querySelector(".navbar");
+  nav.classList.toggle("scrolled", window.scrollY > 50);
+});
+function changeLanguage(langCode) {
+  const languageMap = {
+    en: { flag: "gb", name: "EN" },
+    fr: { flag: "fr", name: "FR" },
+    pl: { flag: "pl", name: "PL" },
+    sw: { flag: "tz", name: "SW" },
+  };
+
+  const selected = languageMap[langCode] || languageMap["en"];
+  const langElement = document.getElementById("current-language");
+
+  // Update display
+  langElement.innerHTML = `
+      <img src="https://flagcdn.com/w20/${selected.flag}.png" class="mr-1" alt="${selected.name}"> ${selected.name}
+    `;
+
+  // Optional: Store preference
+  localStorage.setItem("preferredLanguage", langCode);
+
+  // TODO: Add logic to reload content or navigate (e.g., window.location.href)
+}
+
+// Load saved language on page load
+document.addEventListener("DOMContentLoaded", function () {
+  const savedLang = localStorage.getItem("preferredLanguage");
+  if (savedLang) {
+    changeLanguage(savedLang);
+  }
+
+  // Navbar toggle logic (mobile responsiveness)
+  const toggler = document.querySelector(".navbar-toggler");
+  const collapse = document.querySelector("#navbarResponsive");
+
+  if (toggler && collapse) {
+    toggler.addEventListener("click", function () {
+      const isExpanded = collapse.classList.contains("show");
+
+      collapse.classList.toggle("show");
+      toggler.setAttribute("aria-expanded", !isExpanded);
+    });
+  }
+
+  // Close navbar when a link is clicked (mobile)
+  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      if (window.innerWidth < 992) {
+        collapse.classList.remove("show");
+        toggler.setAttribute("aria-expanded", false);
+      }
+    });
+  });
 });

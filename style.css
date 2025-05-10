@@ -8,6 +8,75 @@
   --transition: all 0.3s ease;
 }
 
+/* Ensure navbar doesn't cause horizontal scroll */
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive container */
+.navbar .container {
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Force nav items to wrap properly on small screens */
+.navbar-nav {
+  flex-wrap: wrap;
+}
+
+/* Dropdown on smaller screens */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: white !important;
+  }
+
+  .navbar-nav .dropdown-menu {
+    background-color: #fff;
+    margin: 0;
+  }
+}
+.hero-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-slide {
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* full screen height on desktop */
+  min-height: 500px;
+}
+
+@media (max-width: 768px) {
+  .hero-slide {
+    height: 70vh; /* reduce height on small screens */
+    min-height: 350px;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+
 body {
   font-family: "Poppins", sans-serif;
   color: var(--dark-color);
