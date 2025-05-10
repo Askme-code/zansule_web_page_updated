@@ -1,0 +1,70 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f7f9fc;
+  color: #333;
+  line-height: 1.6;
+}
+
+.price-section {
+  margin-top: 100px;
+}
+
+.heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #006a71;
+  position: relative;
+}
+
+.heading::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background: #00b894;
+  display: block;
+  margin: 10px auto 0;
+}
+
+.table-style {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+.table thead th {
+  background-color: #00b894;
+  color: white;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.safari-card {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.card {
+  border-radius: 10px;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional animation fallback */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

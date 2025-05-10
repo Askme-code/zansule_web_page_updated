@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Zansule Tour & Safari</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .offline-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .offline-icon {
+            font-size: 5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .offline-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .offline-message {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        
+        .offline-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        @media (min-width: 576px) {
+            .offline-actions {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">
+            <i class="fas fa-wifi-slash"></i>
+        </div>
+        <h1 class="offline-title">You're Offline</h1>
+        <p class="offline-message">
+            It looks like you're currently offline. Don't worry - you can still access your saved tours and maps.
+        </p>
+        <div class="offline-actions">
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-home mr-2"></i> Go to Homepage
+            </a>
+            <a href="nearby-tours.html" class="btn btn-outline-primary">
+                <i class="fas fa-map-marked-alt mr-2"></i> View Offline Maps
+            </a>
+        </div>
+        <div class="mt-4">
+            <button id="reload-page" class="btn btn-link">
+                <i class="fas fa-sync-alt mr-2"></i> Try Again
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('reload-page').addEventListener('click', function() {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>

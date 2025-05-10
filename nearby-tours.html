@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Tours - Zansule Tour & Safari</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/nearby-tours.css">
+    <link rel="stylesheet" href="css/offline-maps.css">
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Zansule Tour & Safari</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#tours">Tours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#safaris">Safaris</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="nearby-tours.html">Nearby Tours
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="booking.html">Book a Tour</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-globe-africa mr-1"></i> <span id="current-language">EN</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
+                            <a class="dropdown-item" href="#" onclick="changeLanguage('en')"><img src="https://flagcdn.com/w20/gb.png" class="mr-2" alt="English"> English</a>
+                            <a class="dropdown-item" href="#" onclick="changeLanguage('fr')"><img src="https://flagcdn.com/w20/fr.png" class="mr-2" alt="French"> Français</a>
+                            <a class="dropdown-item" href="#" onclick="changeLanguage('pl')"><img src="https://flagcdn.com/w20/pl.png" class="mr-2" alt="Polish"> Polski</a>
+                            <a class="dropdown-item" href="#" onclick="changeLanguage('sw')"><img src="https://flagcdn.com/w20/tz.png" class="mr-2" alt="Swahili"> Kiswahili</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading">
+                        <h1>Discover Nearby Tours</h1>
+                        <span class="subheading">Find the best experiences close to your location</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nearby Tours Section -->
+    <section id="nearby-tours" class="py-5">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Tours Near You</h2>
+            <p class="text-center mb-5" data-aos="fade-up" data-aos-delay="100">Discover the best attractions and experiences close to your current location</p>
+            
+            <div class="offline-banner" data-aos="fade-up">
+                <div class="offline-banner-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="offline-banner-content">
+                    <h4>Offline Maps Available</h4>
+                    <p>Download map areas to use when you have no internet connection. Perfect for exploring remote areas of Zanzibar!</p>
+                    <button id="download-map-info" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-info-circle mr-1"></i> How It Works
+                    </button>
+                </div>
+            </div>
+            
+            <div class="location-status" id="location-status" data-aos="fade-up">
+                <span>Please allow location access to find tours near you</span>
+                <button id="refresh-location" class="refresh-location" title="Refresh Location">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+            
+            <div class="filter-controls" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-globe"></i> All
+                </button>
+                <button class="filter-btn" data-filter="Cultural">
+                    <i class="fas fa-landmark"></i> Cultural
+                </button>
+                <button class="filter-btn" data-filter="Water">
+                    <i class="fas fa-water"></i> Water
+                </button>
+                <button class="filter-btn" data-filter="Wildlife">
+                    <i class="fas fa-paw"></i> Wildlife
+                </button>
+                <button class="filter-btn" data-filter="Nature">
+                    <i class="fas fa-tree"></i> Nature
+                </button>
+                <button class="filter-btn" data-filter="Beach">
+                    <i class="fas fa-umbrella-beach"></i> Beach
+                </button>
+            </div>
+            
+            <div id="nearby-tours-container">
+                <div class="row" id="nearby-tours-list">
+                    <!-- Tours will be dynamically added here -->
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <p class="mt-3">Loading nearby tours...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="map-container" data-aos="fade-up">
+                <h3 class="mb-3">Explore Tours on Map</h3>
+                <div class="map-instructions">
+                    <p><i class="fas fa-info-circle text-primary mr-2"></i> Use the controls in the top-right corner to download map areas for offline use.</p>
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offline Maps Info Modal -->
+    <div class="modal fade" id="offlineMapsModal" tabindex="-1" role="dialog" aria-labelledby="offlineMapsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="offlineMapsModalLabel">How Offline Maps Work</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="offline-maps-info">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h5>Download Map Areas</h5>
+                                <p>Use the <i class="fas fa-download"></i> button in the map controls to download the current map view for offline use.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h5>Switch to Offline Mode</h5>
+                                <p>Toggle offline mode with the <i class="fas fa-wifi"></i> button. When offline, you'll see <i class="fas fa-wifi-slash"></i> indicating offline mode is active.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h5>View Saved Areas</h5>
+                                <p>Access your saved map areas with the <i class="fas fa-save"></i> button to quickly navigate to previously downloaded regions.</p>
+                            </div>
+                        </div>
+                        <div class="offline-maps-note">
+                            <p><strong>Note:</strong> The app will automatically switch to offline mode when no internet connection is detected.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Got it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h4 class="footer-title">Zansule Tour & Safari</h4>
+                    <p>Providing unforgettable experiences in Zanzibar and Tanzania since 2010.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/zansuletourandsafaris" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/selengofm" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/255772408250" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#tours">Zanzibar Tours</a></li>
+                        <li><a href="index.html#safaris">Tanzania Safaris</a></li>
+                        <li><a href="nearby-tours.html">Nearby Tours</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="booking.html">Book a Tour</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope mr-2"></i><a href="mailto:selemansefm8080@gmail.com">selemansefm8080@gmail.com</a></li>
+                        <li><i class="fab fa-facebook-f mr-2"></i><a href="https://www.facebook.com/zansuletourandsafaris" target="_blank">zansule tour & safaris</a></li>
+                        <li><i class="fas fa-phone mr-2"></i><a href="tel:+255772408250">0772408250</a> / <a href="tel:+255782064800">0782064800</a></li>
+                        <li><i class="fab fa-whatsapp mr-2"></i><a href="https://wa.me/255772408250" target="_blank">WhatsApp Chat</a></li>
+                        <li><i class="fab fa-instagram mr-2"></i><a href="https://www.instagram.com/selengofm" target="_blank">@selengofm</a></li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Stone Town, Zanzibar, Tanzania</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light opacity-25">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Zansule Tour & Safari. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Fixed WhatsApp Button -->
+    <a href="https://wa.me/255772408250" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Chat with us</span>
+    </a>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="index.html#tours" class="mobile-nav-item">
+            <i class="fas fa-umbrella-beach"></i>
+            <span>Tours</span>
+        </a>
+        <a href="nearby-tours.html" class="mobile-nav-item active">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Nearby</span>
+        </a>
+        <a href="booking.html" class="mobile-nav-item">
+            <i class="fas fa-calendar-check"></i>
+            <span>Book</span>
+        </a>
+        <a href="index.html#contact" class="mobile-nav-item">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Leaflet Offline Plugin -->
+    <script src="https://unpkg.com/leaflet.offline@1.1.0/dist/leaflet.offline.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+    <script src="js/offline-maps.js"></script>
+    <script src="js/nearby-tours.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Show offline maps info modal
+        document.getElementById('download-map-info').addEventListener('click', function() {
+            $('#offlineMapsModal').modal('show');
+        });
+        
+        // Register service worker for offline functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

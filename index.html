@@ -20,8 +20,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <!-- Navigation -->
+<body> <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -38,27 +37,17 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tours">Tours</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#safaris">Safaris</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testimonials">Testimonials</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">Gallery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="booking.html">Book a Tour</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tours">Tours</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#safaris">Safaris</a></li>
+                    <li class="nav-item"><a class="nav-link" href="nearby-tours.html">Nearby Tours</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="booking.html">Book a Tour</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                     <li class="nav-item"><a class="nav-link" href="price.html">Price</a></li>
+    
+                    <!-- Language Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-globe-africa mr-1"></i> <span id="current-language">EN</span>
@@ -75,10 +64,14 @@
         </div>
     </nav>
 
+    <!-- Google Translate hidden element -->
+    <div id="google_translate_element" style="display: none;"></div>
+    <div id="google_translate_element" style="display: none;"></div>
+
     <!-- Hero Slider -->
     <header class="hero-slider">
         <!-- Slide 1 -->
-        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');">
+        <div class="hero-slide active" style="background-image: url('assets/img/safari/safari_nature_river.jpg');">
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 class="hero-title">Welcome to Zansule Tour & Safari</h1>
@@ -88,7 +81,7 @@
         </div>
         
         <!-- Slide 2 -->
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1589664810433-136a8ae7c0d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');">
+        <div class="hero-slide" style="background-image: url('assets/img/safari/safari_serengeti_balloon.jpg');">
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 class="hero-title">Unforgettable Zanzibar Tours</h1>
@@ -98,7 +91,7 @@
         </div>
         
         <!-- Slide 3 -->
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');">
+        <div class="hero-slide" style="background-image: url('assets/img/tour/tour_stone_town_forozani.png');">
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 class="hero-title">Amazing Tanzania Safaris</h1>
@@ -121,7 +114,7 @@
             <h2 class="section-title" data-aos="fade-up">About Us</h2>
             <div class="row">
                 <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Zanzibar Beach" class="img-fluid rounded shadow">
+                    <img src="assets/img/tour/paje beach.jpeg" alt="Zanzibar Beach" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
                     <div class="p-4">
@@ -149,8 +142,8 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card h-100">
                         <span class="tour-type">Cultural</span>
-                        <span class="price-tag">$45</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1489493585363-d69421e0edd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Stone Town">
+                        <span class="price-tag">1-2 $135</span>
+                        <img class="card-img-top" src="assets/img/tour/Stone_Town_01.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Stone Town Tour</h4>
                             <p class="card-text">Walk through the UNESCO World Heritage site and explore the rich history and culture of Zanzibar.</p>
@@ -166,8 +159,8 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="card h-100">
                         <span class="tour-type">Water</span>
-                        <span class="price-tag">$65</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1589664810433-136a8ae7c0d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Safari Blue">
+                        <span class="price-tag">1-2 $275</span>
+                        <img class="card-img-top" src="assets/img/tour/safari_blue_in_zanzibar.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Safari Blue</h4>
                             <p class="card-text">Experience the ultimate sea adventure with snorkeling, swimming, and a delicious seafood lunch.</p>
@@ -183,8 +176,8 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="card h-100">
                         <span class="tour-type">Wildlife</span>
-                        <span class="price-tag">$50</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Prison Island">
+                        <span class="price-tag">1-2 $275</span>
+                        <img class="card-img-top" src="assets/img/tour/prison island tour.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Prison Island Tour</h4>
                             <p class="card-text">Explore the historic Prison Island and meet the giant tortoises while enjoying crystal clear waters.</p>
@@ -200,8 +193,8 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card h-100">
                         <span class="tour-type">Cultural</span>
-                        <span class="price-tag">$40</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Spice Tour">
+                        <span class="price-tag">1-2 $135</span>
+                        <img class="card-img-top" src="assets/img/tour/Stone_Town_01.jpg" alt="Spice Tour">
                         <div class="card-body">
                             <h4 class="card-title">Spice Tour</h4>
                             <p class="card-text">Discover why Zanzibar is known as the Spice Island with a guided tour through aromatic spice plantations.</p>
@@ -217,8 +210,8 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="card h-100">
                         <span class="tour-type">Nature</span>
-                        <span class="price-tag">$45</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1544535830-9df3f56fff6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Jozani Forest">
+                        <span class="price-tag">1-2$155</span>
+                        <img class="card-img-top" src="assets/img/tour/jozani1.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Jozani Forest</h4>
                             <p class="card-text">Visit the home of the rare Red Colobus monkeys and explore the lush mangrove forest ecosystem.</p>
@@ -234,8 +227,8 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="card h-100">
                         <span class="tour-type">Wildlife</span>
-                        <span class="price-tag">$55</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1591025207163-942350e47db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Sea Turtle Nungwi">
+                        <span class="price-tag">1-2$115</span>
+                        <img class="card-img-top" src="assets/img/tour/sea turtle nungwi.jpg" alt="Sea Turtle Nungwi">
                         <div class="card-body">
                             <h4 class="card-title">Sea Turtle Nungwi</h4>
                             <p class="card-text">Visit the turtle conservation sanctuary in Nungwi and swim with these magnificent creatures.</p>
@@ -251,8 +244,8 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card h-100">
                         <span class="tour-type">Wildlife</span>
-                        <span class="price-tag">$60</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dolphin Kizimkazi">
+                        <span class="price-tag">1-2$260</span>
+                        <img class="card-img-top" src="assets/img/tour/Dolphin tour.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Dolphin Kizimkazi</h4>
                             <p class="card-text">Swim with dolphins in their natural habitat and enjoy the beautiful southern beaches of Zanzibar.</p>
@@ -268,8 +261,8 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="card h-100">
                         <span class="tour-type">Water</span>
-                        <span class="price-tag">$55</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Snorkelling Blue Lagoon">
+                        <span class="price-tag">1-2$260</span>
+                        <img class="card-img-top" src="assets/img/tour/safari-blue-snorkel-1.jpg" alt="Snorkelling Blue Lagoon">
                         <div class="card-body">
                             <h4 class="card-title">Snorkelling Blue Lagoon</h4>
                             <p class="card-text">Explore the vibrant underwater world of the Blue Lagoon with its colorful coral reefs and marine life.</p>
@@ -285,8 +278,8 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="card h-100">
                         <span class="tour-type">Beach</span>
-                        <span class="price-tag">$50</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Nakupenda Sand Bank">
+                        <span class="price-tag">1-2$255</span>
+                        <img class="card-img-top" src="assets/img/tour/nakupenda_love_island.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Nakupenda Sand Bank</h4>
                             <p class="card-text">Visit the stunning Nakupenda sandbank that appears during low tide and enjoy a seafood BBQ lunch.</p>
@@ -313,7 +306,7 @@
                     <div class="card h-100">
                         <span class="tour-type">Wildlife</span>
                         <span class="price-tag">$350</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1516260268631-6a7d56f679e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Serengeti Safari">
+                        <img class="card-img-top" src="assets/img/safari/Serengeti-National-Park-zebra.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Serengeti Safari</h4>
                             <p class="card-text">Experience the world-famous Serengeti National Park and witness the incredible wildlife of Tanzania.</p>
@@ -330,7 +323,7 @@
                     <div class="card h-100">
                         <span class="tour-type">Wildlife</span>
                         <span class="price-tag">$300</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1565368375407-c10a8a5ffd2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Ngorongoro Crater">
+                        <img class="card-img-top" src="assets/img/safari/ngorongoro tour.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Ngorongoro Crater</h4>
                             <p class="card-text">Explore the UNESCO World Heritage site known as the 'Garden of Eden' with its diverse wildlife.</p>
@@ -347,7 +340,7 @@
                     <div class="card h-100">
                         <span class="tour-type">Wildlife</span>
                         <span class="price-tag">$250</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1547970810-dc1eac37d174?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Mikumi National Park">
+                        <img class="card-img-top" src="assets/img/safari/1-day-mikumi-national-park.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Mikumi National Park</h4>
                             <p class="card-text">Visit Tanzania's fourth-largest national park, home to lions, zebras, wildebeest, and elephants.</p>
@@ -364,7 +357,7 @@
                     <div class="card h-100">
                         <span class="tour-type">Mountain</span>
                         <span class="price-tag">$1800</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Mount Kilimanjaro">
+                        <img class="card-img-top" src="assets/img/safari/kilimanjaro_photo_gallery.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Mount Kilimanjaro</h4>
                             <p class="card-text">Climb Africa's highest peak and experience the breathtaking views from the "Roof of Africa".</p>
@@ -381,7 +374,7 @@
                     <div class="card h-100">
                         <span class="tour-type">Mountain</span>
                         <span class="price-tag">$1200</span>
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1621414050345-53db43f7e7ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Mount Meru">
+                        <img class="card-img-top" src="assets/img/safari/mount meru climbing.jpg">
                         <div class="card-body">
                             <h4 class="card-title">Mount Meru</h4>
                             <p class="card-text">Trek Tanzania's second-highest peak with stunning views of Mount Kilimanjaro and diverse wildlife.</p>
@@ -589,7 +582,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="reviewForm">
+               
+                <form id="reviewForm" action="https://formspree.io/f/xwpoozjq" method="POST" >
                     <div class="form-group">
                         <label for="reviewName">Your Name*</label>
                         <input type="text" class="form-control" id="reviewName" required>
@@ -783,6 +777,7 @@
             </div>
             <hr class="my-4 bg-light opacity-25">
             <div class="text-center">
+                <p class="mb-0">Designed by <link rel="stylesheet" href="kimumilangali@gmail.com">Milangali kimu</p>
                 <p class="mb-0">&copy; 2023 Zansule Tour & Safari. All rights reserved.</p>
             </div>
         </div>
@@ -798,6 +793,30 @@
         <i class="fab fa-whatsapp"></i>
         <span class="whatsapp-text">Chat with us</span>
     </a>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <a href="#" class="mobile-nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#tours" class="mobile-nav-item">
+            <i class="fas fa-umbrella-beach"></i>
+            <span>Tours</span>
+        </a>
+        <a href="nearby-tours.html" class="mobile-nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Nearby</span>
+        </a>
+        <a href="booking.html" class="mobile-nav-item">
+            <i class="fas fa-calendar-check"></i>
+            <span>Book</span>
+        </a>
+        <a href="#contact" class="mobile-nav-item">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+    </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -817,6 +836,38 @@
             once: true
         });
     </script>
-</body>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
 
+        function changeLanguage(lang) {
+            const select = document.querySelector("select.goog-te-combo");
+            if (!select) {
+                alert("Translation service not ready. Please wait.");
+                return;
+            }
+
+            select.value = lang;
+            select.dispatchEvent(new Event("change"));
+
+            const langMap = {
+                en: "EN",
+                fr: "FR",
+                pl: "PL",
+                sw: "SW"
+            };
+            document.getElementById("current-language").textContent = langMap[lang] || lang.toUpperCase();
+        }
+    </script>
+
+    <!-- Load Google Translate -->
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
 </html>

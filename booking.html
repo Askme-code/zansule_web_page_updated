@@ -234,7 +234,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+                       
                                 <div class="form-group">
                                     <label for="pickupLocation">Pickup Location</label>
                                     <input type="text" class="form-control" id="pickupLocation" name="pickupLocation" placeholder="Hotel name or address">
@@ -260,6 +260,17 @@
                                 </div>
                             </div>
 
+                                <div id="accommodationOptions" class="d-none">
+                                    <div class="form-group">
+                                        <label for="accommodationType">Preferred Accommodation Type</label>
+                                        <select class="form-control" id="accommodationType" name="accommodationType">
+                                            <option value="Budget">Budget</option>
+                                            <option value="Standard" selected>Standard</option>
+                                            <option value="Luxury">Luxury</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
                             <div class="form-group" data-aos="fade-up" data-aos-delay="400">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="termsCheck" required>

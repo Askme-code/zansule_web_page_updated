@@ -1,128 +1,203 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Navbar scroll effect
-  const navbar = document.querySelector(".navbar")
+  const navbar = document.querySelector(".navbar");
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
-      navbar.classList.add("scrolled")
+      navbar.classList.add("scrolled");
     } else {
-      navbar.classList.remove("scrolled")
+      navbar.classList.remove("scrolled");
     }
-  })
+  });
 
   // Back to top button
-  const backToTopButton = document.getElementById("back-to-top")
+  const backToTopButton = document.getElementById("back-to-top");
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 300) {
-      backToTopButton.classList.add("show")
+      backToTopButton.classList.add("show");
     } else {
-      backToTopButton.classList.remove("show")
+      backToTopButton.classList.remove("show");
     }
-  })
+  });
 
   backToTopButton.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    })
-  })
+    });
+  });
+
+  // Mobile Bottom Navigation
+  const mobileNavItems = document.querySelectorAll(".mobile-nav-item");
+
+  mobileNavItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      // Remove active class from all items
+      mobileNavItems.forEach((navItem) => {
+        navItem.classList.remove("active");
+      });
+
+      // Add active class to clicked item
+      this.classList.add("active");
+
+      // If it's a hash link, handle smooth scrolling
+      const href = this.getAttribute("href");
+      if (href.startsWith("#") && href !== "#") {
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+          const navbarHeight = document.querySelector(".navbar").offsetHeight;
+          const mobileNavHeight =
+            document.querySelector(".mobile-bottom-nav").offsetHeight;
+          const targetPosition =
+            targetElement.getBoundingClientRect().top +
+            window.pageYOffset -
+            navbarHeight -
+            20;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
+        }
+      }
+    });
+  });
+
+  // Update active nav item based on scroll position
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+
+    // Get all sections
+    const sections = document.querySelectorAll("section");
+
+    // Find the current section
+    let currentSection = "";
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.offsetHeight;
+
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionTop + sectionHeight
+      ) {
+        currentSection = section.getAttribute("id");
+      }
+    });
+
+    // Update active nav item
+    if (currentSection) {
+      mobileNavItems.forEach((item) => {
+        item.classList.remove("active");
+        const href = item.getAttribute("href");
+        if (href === `#${currentSection}`) {
+          item.classList.add("active");
+        }
+      });
+    }
+  });
 
   // Smooth scrolling for navigation links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-      const targetId = this.getAttribute("href")
-      if (targetId === "#") return
+      const targetId = this.getAttribute("href");
+      if (targetId === "#") return;
 
-      const targetElement = document.querySelector(targetId)
+      const targetElement = document.querySelector(targetId);
       if (targetElement) {
-        e.preventDefault()
+        e.preventDefault();
 
-        const navbarHeight = document.querySelector(".navbar").offsetHeight
-        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight
+        const navbarHeight = document.querySelector(".navbar").offsetHeight;
+        const mobileNavHeight = document.querySelector(".mobile-bottom-nav")
+          ? document.querySelector(".mobile-bottom-nav").offsetHeight
+          : 0;
+        const targetPosition =
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset -
+          navbarHeight -
+          20;
 
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth",
-        })
+        });
 
         // Close mobile menu if open
-        const navbarCollapse = document.querySelector(".navbar-collapse")
+        const navbarCollapse = document.querySelector(".navbar-collapse");
         if (navbarCollapse.classList.contains("show")) {
-          navbarCollapse.classList.remove("show")
+          navbarCollapse.classList.remove("show");
         }
       }
-    })
-  })
+    });
+  });
 
   // Hero Slider
-  const heroSlides = document.querySelectorAll(".hero-slide")
-  const sliderDots = document.querySelectorAll(".slider-dot")
-  let currentSlide = 0
-  let slideInterval
+  const heroSlides = document.querySelectorAll(".hero-slide");
+  const sliderDots = document.querySelectorAll(".slider-dot");
+  let currentSlide = 0;
+  let slideInterval;
 
   function showSlide(index) {
     // Hide all slides
     heroSlides.forEach((slide) => {
-      slide.classList.remove("active")
-    })
+      slide.classList.remove("active");
+    });
 
     // Remove active class from all dots
     sliderDots.forEach((dot) => {
-      dot.classList.remove("active")
-    })
+      dot.classList.remove("active");
+    });
 
     // Show the selected slide and activate corresponding dot
-    heroSlides[index].classList.add("active")
-    sliderDots[index].classList.add("active")
+    heroSlides[index].classList.add("active");
+    sliderDots[index].classList.add("active");
 
-    currentSlide = index
+    currentSlide = index;
   }
 
   function nextSlide() {
-    let next = currentSlide + 1
+    let next = currentSlide + 1;
     if (next >= heroSlides.length) {
-      next = 0
+      next = 0;
     }
-    showSlide(next)
+    showSlide(next);
   }
 
   // Initialize slider
   if (heroSlides.length > 0) {
     // Start automatic slideshow
-    slideInterval = setInterval(nextSlide, 5000)
+    slideInterval = setInterval(nextSlide, 5000);
 
     // Add click event to dots
     sliderDots.forEach((dot, index) => {
       dot.addEventListener("click", () => {
-        clearInterval(slideInterval)
-        showSlide(index)
-        slideInterval = setInterval(nextSlide, 5000)
-      })
-    })
+        clearInterval(slideInterval);
+        showSlide(index);
+        slideInterval = setInterval(nextSlide, 5000);
+      });
+    });
   }
 
   // Tour Modal
-  const $ = window.jQuery // Declare $ as jQuery
+  const $ = window.jQuery; // Declare $ as jQuery
   $("#tourModal").on("show.bs.modal", function (event) {
-    const button = $(event.relatedTarget)
-    const tourName = button.data("tour")
-    const tourPrice = button.data("price")
-    const modal = $(this)
+    const button = $(event.relatedTarget);
+    const tourName = button.data("tour");
+    const tourPrice = button.data("price");
+    const modal = $(this);
 
     // Set tour details based on the selected tour
-    modal.find("#modalTourTitle").text(tourName)
-    modal.find("#modalTourPrice").text(`$${tourPrice} per person`)
+    modal.find("#modalTourTitle").text(tourName);
+    modal.find("#modalTourPrice").text(`$${tourPrice} per person`);
 
     // Set the book now button link
-    modal.find("#modalBookBtn").attr("onclick", `bookTour('${tourName}')`)
+    modal.find("#modalBookBtn").attr("onclick", `bookTour('${tourName}')`);
 
     // Set tour image
-    let tourImage = ""
+    let tourImage = "";
     switch (tourName) {
       case "Stone Town Tour":
-        tourImage =
-          "https://images.unsplash.com/photo-1489493585363-d69421e0edd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+        tourImage = "assets/img/tour/tour_stone_town_forozani.png";
         setTourDetails(
           modal,
           [
@@ -138,12 +213,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "Bottled water",
             "Entrance fees to historical sites",
             "Hotel pickup and drop-off (Stone Town area)",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Safari Blue":
         tourImage =
-          "https://images.unsplash.com/photo-1589664810433-136a8ae7c0d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/tour/safari_blue_in_zanzibar.jpg";
         setTourDetails(
           modal,
           [
@@ -161,12 +236,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "Fresh tropical fruits",
             "Soft drinks and water",
             "Hotel pickup and drop-off",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Prison Island Tour":
         tourImage =
-          "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fMHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/tour/prison island tour.jpg";
         setTourDetails(
           modal,
           [
@@ -183,12 +258,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "Snorkeling equipment",
             "Bottled water",
             "Hotel pickup and drop-off (Stone Town area)",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Spice Tour":
         tourImage =
-          "https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/tour/spice tour.jpg";
         setTourDetails(
           modal,
           [
@@ -205,12 +280,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "Seasonal fruit tastings",
             "Bottled water",
             "Hotel pickup and drop-off",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Jozani Forest":
         tourImage =
-          "https://images.unsplash.com/photo-1544535830-9df3f56fff6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/tour/jozani forest.jpg";
         setTourDetails(
           modal,
           [
@@ -220,12 +295,17 @@ document.addEventListener("DOMContentLoaded", () => {
             "Learn about local conservation efforts",
           ],
           "Jozani Forest is home to the rare and endemic Zanzibar Red Colobus monkey, found only in Zanzibar. Take a guided walk through this protected forest to observe these endangered primates in their natural habitat. You'll also explore the mangrove boardwalk and learn about the unique ecosystem and conservation efforts in the area.",
-          ["Entrance fees to Jozani Forest", "Professional guide", "Bottled water", "Hotel pickup and drop-off"],
-        )
-        break
+          [
+            "Entrance fees to Jozani Forest",
+            "Professional guide",
+            "Bottled water",
+            "Hotel pickup and drop-off",
+          ]
+        );
+        break;
       case "Sea Turtle Nungwi":
         tourImage =
-          "https://images.unsplash.com/photo-1591025207163-942350e47db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/tour/sea turtle nungwi.jpg";
         setTourDetails(
           modal,
           [
@@ -241,12 +321,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "Swimming with turtles experience",
             "Bottled water",
             "Hotel pickup and drop-off",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Dolphin Kizimkazi":
         tourImage =
-          "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/tour/Dolphin tour.jpg";
         setTourDetails(
           modal,
           [
@@ -256,12 +336,18 @@ document.addEventListener("DOMContentLoaded", () => {
             "Visit to Kizimkazi village",
           ],
           "Head to the southern village of Kizimkazi for an exciting dolphin watching adventure. Board a traditional wooden boat and sail to areas where dolphins are commonly spotted. If lucky, you'll have the opportunity to swim alongside these intelligent marine mammals in their natural habitat. The tour also includes snorkeling at beautiful coral reefs and a visit to the historic Kizimkazi village with its ancient mosque.",
-          ["Boat trip", "Professional guide", "Snorkeling equipment", "Bottled water", "Hotel pickup and drop-off"],
-        )
-        break
+          [
+            "Boat trip",
+            "Professional guide",
+            "Snorkeling equipment",
+            "Bottled water",
+            "Hotel pickup and drop-off",
+          ]
+        );
+        break;
       case "Snorkelling Blue Lagoon":
         tourImage =
-          "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/tour/safari-blue-snorkel-1.jpg";
         setTourDetails(
           modal,
           [
@@ -278,12 +364,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "Fresh fruits",
             "Bottled water",
             "Hotel pickup and drop-off",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Nakupenda Sand Bank":
         tourImage =
-          "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/tour/nakupenda_love_island.jpg";
         setTourDetails(
           modal,
           [
@@ -302,12 +388,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "Fresh fruits",
             "Soft drinks and water",
             "Hotel pickup and drop-off (Stone Town area)",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Serengeti Safari":
         tourImage =
-          "https://images.unsplash.com/photo-1516260268631-6a7d56f679e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/safari/Serengeti-National-Park-zebra.jpg";
         setTourDetails(
           modal,
           [
@@ -326,12 +412,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "All meals during safari",
             "Bottled water",
             "Airport/hotel pickup and drop-off",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Ngorongoro Crater":
         tourImage =
-          "https://images.unsplash.com/photo-1565368375407-c10a8a5ffd2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/safari/Ngorongoro-Crater.jpg";
         setTourDetails(
           modal,
           [
@@ -350,12 +436,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "All meals during safari",
             "Bottled water",
             "Airport/hotel pickup and drop-off",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Mikumi National Park":
         tourImage =
-          "https://images.unsplash.com/photo-1547970810-dc1eac37d174?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/safari/1-day-mikumi-national-park.jpg";
         setTourDetails(
           modal,
           [
@@ -373,12 +459,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "All meals during safari",
             "Bottled water",
             "Airport/hotel pickup and drop-off",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Mount Kilimanjaro":
         tourImage =
-          "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/safari/kilimanjaro.jpg";
         setTourDetails(
           modal,
           [
@@ -397,12 +483,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "Park fees and permits",
             "Airport transfers",
             "Pre and post-climb accommodation",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       case "Mount Meru":
         tourImage =
-          "https://images.unsplash.com/photo-1621414050345-53db43f7e7ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/safari/Meru mountain.jpg";
         setTourDetails(
           modal,
           [
@@ -421,95 +507,98 @@ document.addEventListener("DOMContentLoaded", () => {
             "Accommodation in mountain huts",
             "Park fees and permits",
             "Airport transfers",
-          ],
-        )
-        break
+          ]
+        );
+        break;
       default:
         tourImage =
-          "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          "assets/img/safari/serengeti_baloon.jpg";
     }
 
-    modal.find("#modalTourImg").attr("src", tourImage)
-  })
+    modal.find("#modalTourImg").attr("src", tourImage);
+  });
 
   function setTourDetails(modal, highlights, description, includes) {
     // Set highlights
-    const highlightsList = modal.find("#modalTourHighlights")
-    highlightsList.empty()
+    const highlightsList = modal.find("#modalTourHighlights");
+    highlightsList.empty();
     highlights.forEach((highlight) => {
-      highlightsList.append(`<li>${highlight}</li>`)
-    })
+      highlightsList.append(`<li>${highlight}</li>`);
+    });
 
     // Set description
-    modal.find("#modalTourDescription").text(description)
+    modal.find("#modalTourDescription").text(description);
 
     // Set includes
-    const includesList = modal.find("#modalTourIncludes")
-    includesList.empty()
+    const includesList = modal.find("#modalTourIncludes");
+    includesList.empty();
     includes.forEach((item) => {
-      includesList.append(`<li>${item}</li>`)
-    })
+      includesList.append(`<li>${item}</li>`);
+    });
   }
 
   // Review System
-  const reviewForm = document.getElementById("reviewForm")
-  const submitReviewBtn = document.getElementById("submitReview")
+  const reviewForm = document.getElementById("reviewForm");
+  const submitReviewBtn = document.getElementById("submitReview");
 
   // Handle star rating selection
   if (document.querySelector(".rating-input")) {
-    const stars = document.querySelectorAll(".rating-input i")
-    const ratingInput = document.getElementById("reviewRating")
+    const stars = document.querySelectorAll(".rating-input i");
+    const ratingInput = document.getElementById("reviewRating");
 
     function highlightStars(rating) {
       stars.forEach((star) => {
-        const starRating = star.getAttribute("data-rating")
+        const starRating = star.getAttribute("data-rating");
         if (starRating <= rating) {
-          star.classList.remove("far")
-          star.classList.add("fas")
+          star.classList.remove("far");
+          star.classList.add("fas");
         } else {
-          star.classList.remove("fas")
-          star.classList.add("far")
+          star.classList.remove("fas");
+          star.classList.add("far");
         }
-      })
+      });
     }
 
     stars.forEach((star) => {
       star.addEventListener("mouseover", function () {
-        const rating = this.getAttribute("data-rating")
-        highlightStars(rating)
-      })
+        const rating = this.getAttribute("data-rating");
+        highlightStars(rating);
+      });
 
       star.addEventListener("mouseout", () => {
-        const rating = ratingInput.value
-        highlightStars(rating)
-      })
+        const rating = ratingInput.value;
+        highlightStars(rating);
+      });
 
       star.addEventListener("click", function () {
-        const rating = this.getAttribute("data-rating")
-        ratingInput.value = rating
-        highlightStars(rating)
-      })
-    })
+        const rating = this.getAttribute("data-rating");
+        ratingInput.value = rating;
+        highlightStars(rating);
+      });
+    });
   }
 
   // Handle review submission
   if (submitReviewBtn) {
     submitReviewBtn.addEventListener("click", () => {
       if (reviewForm.checkValidity()) {
-        const name = document.getElementById("reviewName").value
-        const email = document.getElementById("reviewEmail").value
-        const tour = document.getElementById("reviewTour").value
-        const rating = document.getElementById("reviewRating").value
-        const reviewText = document.getElementById("reviewText").value
+        const name = document.getElementById("reviewName").value;
+        const email = document.getElementById("reviewEmail").value;
+        const tour = document.getElementById("reviewTour").value;
+        const rating = document.getElementById("reviewRating").value;
+        const reviewText = document.getElementById("reviewText").value;
 
         if (rating === "0") {
-          showNotification("Please select a rating", "error")
-          return
+          showNotification("Please select a rating", "error");
+          return;
         }
 
         // In a real application, this would send the review to a server
         // For now, we'll just show a success message and close the modal
-        showNotification("Thank you for your review! It will be published after moderation.", "success")
+        showNotification(
+          "Thank you for your review! It will be published after moderation.",
+          "success"
+        );
 
         // Save review to localStorage for demonstration purposes
         saveReview({
@@ -519,65 +608,66 @@ document.addEventListener("DOMContentLoaded", () => {
           rating,
           reviewText,
           date: new Date().toISOString(),
-        })
+        });
 
         // Close the modal
-        $("#reviewModal").modal("hide")
+        $("#reviewModal").modal("hide");
 
         // Reset the form
-        reviewForm.reset()
+        reviewForm.reset();
         if (document.querySelector(".rating-input")) {
-          const stars = document.querySelectorAll(".rating-input i")
+          const stars = document.querySelectorAll(".rating-input i");
           stars.forEach((star) => {
-            star.classList.remove("fas")
-            star.classList.add("far")
-          })
+            star.classList.remove("fas");
+            star.classList.add("far");
+          });
         }
       } else {
-        reviewForm.reportValidity()
+        reviewForm.reportValidity();
       }
-    })
+    });
   }
 
   // Save review to localStorage
   function saveReview(review) {
-    const reviews = JSON.parse(localStorage.getItem("tourReviews") || "[]")
-    reviews.push(review)
-    localStorage.setItem("tourReviews", JSON.stringify(reviews))
+    const reviews = JSON.parse(localStorage.getItem("tourReviews") || "[]");
+    reviews.push(review);
+    localStorage.setItem("tourReviews", JSON.stringify(reviews));
   }
 
   // Form submission with AJAX
-  const contactForm = document.getElementById("contactForm")
+  const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
-      e.preventDefault()
+      e.preventDefault();
 
       // Basic form validation
-      const name = document.getElementById("name").value
-      const email = document.getElementById("email").value
-      const message = document.getElementById("message").value
-      const tour = document.getElementById("tour").value
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+      const tour = document.getElementById("tour").value;
 
       if (!name || !email || !message) {
-        showNotification("Please fill in all required fields", "error")
-        return
+        showNotification("Please fill in all required fields", "error");
+        return;
       }
 
       // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        showNotification("Please enter a valid email address", "error")
-        return
+        showNotification("Please enter a valid email address", "error");
+        return;
       }
 
       // Show loading state
-      const submitBtn = contactForm.querySelector('button[type="submit"]')
-      const originalBtnText = submitBtn.innerHTML
-      submitBtn.disabled = true
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...'
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML =
+        '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
 
       // Prepare form data
-      const formData = new FormData(contactForm)
+      const formData = new FormData(contactForm);
 
       // Submit form using fetch API
       fetch(contactForm.action, {
@@ -589,15 +679,18 @@ document.addEventListener("DOMContentLoaded", () => {
       })
         .then((response) => {
           if (response.ok) {
-            return response.json()
+            return response.json();
           } else {
-            throw new Error("Network response was not ok")
+            throw new Error("Network response was not ok");
           }
         })
         .then((data) => {
           // Success - clear form and show success message
-          contactForm.reset()
-          showNotification("Thank you! Your message has been sent successfully.", "success")
+          contactForm.reset();
+          showNotification(
+            "Thank you! Your message has been sent successfully.",
+            "success"
+          );
 
           // Save submission to localStorage for admin dashboard
           const submission = {
@@ -610,38 +703,45 @@ document.addEventListener("DOMContentLoaded", () => {
             tour: tour,
             status: "unread",
             notes: [],
-          }
+          };
 
-          saveSubmission(submission, "contact")
+          saveSubmission(submission, "contact");
 
           // Add this line to send email notification
-          sendEmailNotification("contact", submission)
+          sendEmailNotification("contact", submission);
         })
         .catch((error) => {
           // Error - show error message
-          showNotification("Oops! There was a problem sending your message. Please try again.", "error")
-          console.error("Error:", error)
+          showNotification(
+            "Oops! There was a problem sending your message. Please try again.",
+            "error"
+          );
+          console.error("Error:", error);
         })
         .finally(() => {
           // Reset button state
-          submitBtn.disabled = false
-          submitBtn.innerHTML = originalBtnText
-        })
-    })
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        });
+    });
   }
 
   // Save submission to localStorage for admin dashboard
   function saveSubmission(submission, type) {
-    let submissions = []
+    let submissions = [];
 
     if (type === "contact") {
-      submissions = JSON.parse(localStorage.getItem("contactSubmissions") || "[]")
-      submissions.push(submission)
-      localStorage.setItem("contactSubmissions", JSON.stringify(submissions))
+      submissions = JSON.parse(
+        localStorage.getItem("contactSubmissions") || "[]"
+      );
+      submissions.push(submission);
+      localStorage.setItem("contactSubmissions", JSON.stringify(submissions));
     } else if (type === "booking") {
-      submissions = JSON.parse(localStorage.getItem("bookingSubmissions") || "[]")
-      submissions.push(submission)
-      localStorage.setItem("bookingSubmissions", JSON.stringify(submissions))
+      submissions = JSON.parse(
+        localStorage.getItem("bookingSubmissions") || "[]"
+      );
+      submissions.push(submission);
+      localStorage.setItem("bookingSubmissions", JSON.stringify(submissions));
     }
   }
 
@@ -651,83 +751,90 @@ document.addEventListener("DOMContentLoaded", () => {
   async function sendEmailNotification(type, data) {
     try {
       // Check if email notifications are enabled
-      const emailSettings = JSON.parse(localStorage.getItem("emailSettings") || "{}")
+      const emailSettings = JSON.parse(
+        localStorage.getItem("emailSettings") || "{}"
+      );
 
       if (!emailSettings.enabled) {
-        return // Email notifications are disabled
+        return; // Email notifications are disabled
       }
 
       // Check if this type of notification is enabled
       if (type === "contact" && !emailSettings.contactEnabled) {
-        return
+        return;
       }
 
       if (type === "booking" && !emailSettings.bookingEnabled) {
-        return
+        return;
       }
 
       // Send notification to API endpoint
-      const response = await fetch("https://your-api-endpoint.com/api/send-notification", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          type,
-          data,
-        }),
-      })
+      const response = await fetch(
+        "https://your-api-endpoint.com/api/send-notification",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type,
+            data,
+          }),
+        }
+      );
 
-      const result = await response.json()
+      const result = await response.json();
 
       if (!response.ok) {
-        console.error("Failed to send email notification:", result.error)
+        console.error("Failed to send email notification:", result.error);
       }
     } catch (error) {
-      console.error("Error sending email notification:", error)
+      console.error("Error sending email notification:", error);
     }
   }
 
   // Notification function
   window.showNotification = (message, type = "success") => {
-    const notification = document.createElement("div")
-    notification.className = `notification ${type}`
-    notification.innerHTML = `<i class="fas ${type === "success" ? "fa-check-circle" : "fa-exclamation-circle"}"></i> ${message}`
-    document.body.appendChild(notification)
+    const notification = document.createElement("div");
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `<i class="fas ${
+      type === "success" ? "fa-check-circle" : "fa-exclamation-circle"
+    }"></i> ${message}`;
+    document.body.appendChild(notification);
 
     setTimeout(() => {
-      notification.classList.add("show")
-    }, 100)
+      notification.classList.add("show");
+    }, 100);
 
     setTimeout(() => {
-      notification.classList.remove("show")
+      notification.classList.remove("show");
       setTimeout(() => {
-        document.body.removeChild(notification)
-      }, 500)
-    }, 5000)
-  }
+        document.body.removeChild(notification);
+      }, 500);
+    }, 5000);
+  };
 
   // Language switcher
   window.changeLanguage = (lang) => {
-    const currentLang = document.getElementById("current-language")
+    const currentLang = document.getElementById("current-language");
     const langMap = {
       en: "EN",
       fr: "FR",
       pl: "PL",
       sw: "SW",
-    }
+    };
 
     if (currentLang) {
-      currentLang.textContent = langMap[lang]
+      currentLang.textContent = langMap[lang];
     }
 
     // In a real application, this would load translated content
     // This is just a simulation for demonstration purposes
-    showNotification(`Language changed to ${getLanguageName(lang)}`, "success")
+    showNotification(`Language changed to ${getLanguageName(lang)}`, "success");
 
     // Save language preference to localStorage
-    localStorage.setItem("preferredLanguage", lang)
-  }
+    localStorage.setItem("preferredLanguage", lang);
+  };
 
   function getLanguageName(code) {
     const languages = {
@@ -735,38 +842,40 @@ document.addEventListener("DOMContentLoaded", () => {
       fr: "French",
       pl: "Polish",
       sw: "Swahili",
-    }
-    return languages[code] || "Unknown"
+    };
+    return languages[code] || "Unknown";
   }
 
   // Tour booking function
   window.bookTour = (tourName) => {
     // Redirect to booking page with tour pre-selected
-    window.location.href = `booking.html?tour=${encodeURIComponent(tourName)}`
-  }
+    window.location.href = `booking.html?tour=${encodeURIComponent(tourName)}`;
+  };
 
   // Check for URL parameters (for booking page)
   function getUrlParameter(name) {
-    name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]")
-    const regex = new RegExp("[\\?&]" + name + "=([^&#]*)")
-    const results = regex.exec(location.search)
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "))
+    name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
+    const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    const results = regex.exec(location.search);
+    return results === null
+      ? ""
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
 
   // Pre-select tour if coming from main page
-  const tourParam = getUrlParameter("tour")
+  const tourParam = getUrlParameter("tour");
   if (tourParam && document.getElementById("tourType")) {
-    const tourSelect = document.getElementById("tourType")
+    const tourSelect = document.getElementById("tourType");
     for (let i = 0; i < tourSelect.options.length; i++) {
       if (tourSelect.options[i].value === tourParam) {
-        tourSelect.selectedIndex = i
-        break
+        tourSelect.selectedIndex = i;
+        break;
       }
     }
   }
 
   // Add CSS for notifications
-  const style = document.createElement("style")
+  const style = document.createElement("style");
   style.textContent = `
     .notification {
       position: fixed;
@@ -802,44 +911,45 @@ document.addEventListener("DOMContentLoaded", () => {
       background-color: #dc3545;
       color: white;
     }
-  `
-  document.head.appendChild(style)
+  `;
+  document.head.appendChild(style);
 
   // Image lazy loading
   if ("loading" in HTMLImageElement.prototype) {
-    const images = document.querySelectorAll('img[loading="lazy"]')
+    const images = document.querySelectorAll('img[loading="lazy"]');
     images.forEach((img) => {
-      img.src = img.dataset.src
-    })
+      img.src = img.dataset.src;
+    });
   } else {
     // Fallback for browsers that don't support lazy loading
-    const script = document.createElement("script")
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-    document.body.appendChild(script)
+    const script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js";
+    document.body.appendChild(script);
   }
 
   // Initialize Bootstrap (if not already initialized)
-  let bootstrap = window.bootstrap
+  let bootstrap = window.bootstrap;
   if (typeof bootstrap === "undefined") {
-    bootstrap = {} // Or load it some other way, e.g., using import
+    bootstrap = {}; // Or load it some other way, e.g., using import
   }
 
   // Add admin dashboard link to footer
-  const footerLinks = document.querySelectorAll(".footer-links")
+  const footerLinks = document.querySelectorAll(".footer-links");
   if (footerLinks.length > 0) {
-    const adminLinkItem = document.createElement("li")
-    const adminLink = document.createElement("a")
-    adminLink.href = "admin/index.html"
-    adminLink.textContent = "Admin Dashboard"
-    adminLinkItem.appendChild(adminLink)
-    footerLinks[0].appendChild(adminLinkItem)
+    const adminLinkItem = document.createElement("li");
+    const adminLink = document.createElement("a");
+    adminLink.href = "admin/index.html";
+    adminLink.textContent = "Admin Dashboard";
+    adminLinkItem.appendChild(adminLink);
+    footerLinks[0].appendChild(adminLinkItem);
   }
-})
+});
 
 // Check for saved language preference on page load
 document.addEventListener("DOMContentLoaded", () => {
-  const savedLanguage = localStorage.getItem("preferredLanguage")
+  const savedLanguage = localStorage.getItem("preferredLanguage");
   if (savedLanguage) {
-    changeLanguage(savedLanguage)
+    changeLanguage(savedLanguage);
   }
-})
+});
