@@ -128,26 +128,6 @@
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="price.html">Price</a></li>
     
-                    <!-- Language Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-globe-africa mr-1"></i> <span id="current-language">EN</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
-                            <a class="dropdown-item" href="#" onclick="changeLanguage('en')"><img src="https://flagcdn.com/w20/gb.png" class="mr-2" alt="English"> English</a>
-                            <a class="dropdown-item" href="#" onclick="changeLanguage('fr')"><img src="https://flagcdn.com/w20/fr.png" class="mr-2" alt="French"> Français</a>
-                            <a class="dropdown-item" href="#" onclick="changeLanguage('pl')"><img src="https://flagcdn.com/w20/pl.png" class="mr-2" alt="Polish"> Polski</a>
-                            <a class="dropdown-item" href="#" onclick="changeLanguage('sw')"><img src="https://flagcdn.com/w20/tz.png" class="mr-2" alt="Swahili"> Kiswahili</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Google Translate hidden element -->
-    <div id="google_translate_element" style="display: none;"></div>
-    <div id="google_translate_element" style="display: none;"></div>
     <!-- Sidebar Toggle Button (visible on mobile) -->
 <div class="sidebar-toggle d-lg-none">
     <i class="fas fa-bars" onclick="toggleSidebar()"></i>
@@ -390,34 +370,27 @@
             once: true
         });
     </script>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
 
-        function changeLanguage(lang) {
-            const select = document.querySelector("select.goog-te-combo");
-            if (!select) {
-                alert("Translation service not ready. Please wait.");
-                return;
-            }
+    <script>
+    function startDownload() {
+  // Show the toast message
+  const toastEl = document.getElementById('downloadToast');
+  const toast = new bootstrap.Toast(toastEl);
+  toast.show();
 
-            select.value = lang;
-            select.dispatchEvent(new Event("change"));
+  // Trigger the download after a short delay
+  setTimeout(() => {
+    const link = document.createElement('a');
+    link.href = "https://drive.google.com/uc?export=download&id=1XkrNICPYnoz5YwLiPthI5BLOkIWwhxWt";  // New direct download link
+    link.download = "booking-info.pdf";  // Optional: give file a name (adjust if necessary)
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, 1000); // Delay to let user see the message
+}
 
-            const langMap = {
-                en: "EN",
-                fr: "FR",
-                pl: "PL",
-                sw: "SW"
-            };
-            document.getElementById("current-language").textContent = langMap[lang] || lang.toUpperCase();
-        }
-    </script>
-
+</script>
+ 
     <!-- Load Google Translate -->
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 

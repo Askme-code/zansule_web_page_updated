@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Bootstrap JS and Popper.js (required for toast) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="booking.css">
@@ -291,6 +294,42 @@
             </div>
         </div>
     </section>
+    <!-- Booking Info Download Section -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow rounded-4 border-0">
+        <div class="card-body text-center py-5">
+          <h4 class="card-title mb-3">Need Booking Information?</h4>
+          <p class="card-text mb-4">
+            Click below to download the booking information document directly.
+          </p>
+          <button onclick="startDownload()"
+                  class="btn btn-lg btn-primary px-4 shadow-sm">
+            📄 Download Booking Info
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Message -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+  <div id="downloadToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body">
+        ✅ Your download begins soon!<br>Thank you for booking with us.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
     <!-- Footer -->
     <footer class="py-5 bg-dark text-white">
         <div class="container">
@@ -365,8 +404,28 @@
             once: true
         });
     </script>
+    <!-- Toast Script -->
+<script>
+    function startDownload() {
+  // Show the toast message
+  const toastEl = document.getElementById('downloadToast');
+  const toast = new bootstrap.Toast(toastEl);
+  toast.show();
 
-    <div class="gtranslate_wrapper"></div>
+  // Trigger the download after a short delay
+  setTimeout(() => {
+    const link = document.createElement('a');
+    link.href = "https://drive.google.com/uc?export=download&id=1XkrNICPYnoz5YwLiPthI5BLOkIWwhxWt";  // New direct download link
+    link.download = "booking-info.pdf";  // Optional: give file a name (adjust if necessary)
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, 1000); // Delay to let user see the message
+}
+
+</script>
+
+<div class="gtranslate_wrapper"></div>
 <script>window.gtranslateSettings = {"default_language":"en","languages":["en","fr","it","es"],"wrapper_selector":".gtranslate_wrapper"}</script>
 <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 </body>
