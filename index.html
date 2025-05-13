@@ -19,6 +19,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="style.css">
+     <link rel="icon" href="assets/img/fav/favarite icon.png" type="image/png">
     <!-- FontAwesome Icons -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
@@ -341,7 +342,7 @@ body {
                     <div class="card h-100">
                         <span class="tour-type">Cultural</span>
                         <span class="price-tag">1-2 $135</span>
-                        <img class="card-img-top" src="assets/img/tour/Stone_Town_01.jpg" alt="Spice Tour">
+                        <img class="card-img-top" src="assets/img/tour/spice tour.jpg" alt="Spice Tour">
                         <div class="card-body">
                             <h4 class="card-title">Spice Tour</h4>
                             <p class="card-text">Discover why Zanzibar is known as the Spice Island with a guided tour through aromatic spice plantations.</p>
@@ -917,6 +918,13 @@ body {
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const supabase = supabase.createClient(
+    'https://YOUR-PROJECT.supabase.co',
+    'YOUR-ANON-KEY'
+  );
+</script>
 
 
     <!-- Footer -->
@@ -936,7 +944,7 @@ body {
                     <h5 class="footer-title">Quick Links</h5>
                     <ul class="footer-links">
                         <li><a href="#">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
+                        <li><a href="https://resume-woad-three.vercel.app/">About Developer</a></li>
                         <li><a href="#tours">Zanzibar Tours</a></li>
                         <li><a href="#safaris">Tanzania Safaris</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
@@ -957,10 +965,14 @@ body {
                 </div>
             </div>
             <hr class="my-4 bg-light opacity-25">
-            <div class="text-center">
-                <p class="mb-0">Designed by <link rel="stylesheet" href="kimumilangali@gmail.com">Milangali kimu</p>
-                <p class="mb-0">&copy; 2023 Zansule Tour & Safari. All rights reserved.</p>
-            </div>
+          <div class="text-center">
+    <p class="mb-0">
+        Designed by 
+        <a href="mailto:kimumilangali@gmail.com">Milangali Kimu</a>
+    </p>
+    <p class="mb-0">&copy; 2023 Proud Zanzibar Tours. All rights reserved.</p>
+</div>
+
         </div>
     </footer>
 
@@ -1036,7 +1048,7 @@ body {
   // Trigger the download after a short delay
   setTimeout(() => {
     const link = document.createElement('a');
-    link.href = "https://drive.google.com/uc?export=download&id=1XkrNICPYnoz5YwLiPthI5BLOkIWwhxWt";  // New direct download link
+    link.href = "https://drive.google.com/drive/folders/1iwYmJteUnch_UVFLprFyeKK3GwDOgHZ2?usp=drive_lin";  // New direct download link
     link.download = "booking-info.pdf";  // Optional: give file a name (adjust if necessary)
     document.body.appendChild(link);
     link.click();
@@ -1045,6 +1057,29 @@ body {
 }
 
 </script>
+
+<script>
+document.getElementById("submitReview").addEventListener("click", async function () {
+  const name = document.getElementById("reviewName").value;
+  const email = document.getElementById("reviewEmail").value;
+  const tour = document.getElementById("reviewTour").value;
+  const rating = document.getElementById("reviewRating").value;
+  const review = document.getElementById("reviewText").value;
+
+  const { data, error } = await supabase
+    .from('reviews')
+    .insert([{ name, email, tour, rating, review }]);
+
+  if (error) {
+    alert("Error submitting review: " + error.message);
+  } else {
+    alert("Thank you! Your review has been submitted.");
+    document.getElementById("reviewForm").reset();
+    $('#reviewModal').modal('hide');
+  }
+});
+</script>
+
   
 <!-- GTranslate Settings -->
 <div class="gtranslate_wrapper"></div>

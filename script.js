@@ -945,3 +945,21 @@ window.addEventListener("scroll", function () {
   nav.classList.toggle("scrolled", window.scrollY > 50);
 });
 // JavaScript to toggle the menu on small screens
+async function loadReviews() {
+  const { data: reviews, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error("Error loading reviews:", error.message);
+    return;
+  }
+
+  reviews.forEach((rev) => {
+    const item = `<div><strong>${rev.name}</strong>: ${rev.review} (${rev.rating} stars)</div>`;
+    document.getElementById("reviewDisplay").innerHTML += item;
+  });
+}
+
+loadReviews();
